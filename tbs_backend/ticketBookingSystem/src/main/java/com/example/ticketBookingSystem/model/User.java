@@ -1,11 +1,14 @@
 package com.example.ticketBookingSystem.model;
 
+import java.util.List;
+
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,10 +16,10 @@ import jakarta.persistence.Table;
 public class User {
 
     @Id
-    @Column(name = "id", unique = true)
+    @Column(name = "user_id", unique = true)
     @Nonnull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int userId;
 
     @Column(name = "f_name")
     @Nonnull
@@ -42,13 +45,16 @@ public class User {
     @Nonnull
     private String gender;
 
+    @OneToMany(mappedBy = "user")
+    private List<Booking> bookings;
+
     public User() {
 
     }
 
-    public User(int id, String firstName, String lastName, String email, String password, int age, long phoneNumber,
-            String gender) {
-        this.id = id;
+    public User(int userId, String firstName, String lastName, String email, String password, int age, long phoneNumber,
+            String gender, List<Booking> bookings) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -56,14 +62,7 @@ public class User {
         this.age = age;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.bookings = bookings;
     }
 
     public String getFirstName() {
@@ -120,5 +119,21 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
