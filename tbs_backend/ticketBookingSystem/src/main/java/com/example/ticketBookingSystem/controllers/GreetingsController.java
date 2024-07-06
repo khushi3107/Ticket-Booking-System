@@ -6,12 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.ticketBookingSystem.model.Booking;
 import com.example.ticketBookingSystem.model.Name;
+import com.example.ticketBookingSystem.model.Passenger;
 import com.example.ticketBookingSystem.model.Ticket;
 import com.example.ticketBookingSystem.model.User;
 import com.example.ticketBookingSystem.service.NameService;
 import com.example.ticketBookingSystem.service.TicketService;
 import com.example.ticketBookingSystem.service.UserService;
+import com.example.ticketBookingSystem.service.BookingService;
+import com.example.ticketBookingSystem.service.PassengerService;
 
 @RestController
 public class GreetingsController {
@@ -24,6 +29,12 @@ public class GreetingsController {
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private BookingService bookingService;
+
+    @Autowired
+    private PassengerService passengerService; 
 
     @GetMapping("/greeting")
     public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
@@ -55,5 +66,15 @@ public class GreetingsController {
     @GetMapping("/ticket")
     public List<Ticket> getAllTickets() {
         return ticketService.getAllValues();
+    }
+
+    @GetMapping("/booking")
+    public List<Booking> getBookings() {
+        return bookingService.getAllValues();
+    }
+
+    @GetMapping("/passenger")
+    public List<Passenger> getPassengers() {
+        return passengerService.getAllValues();
     }
 }
