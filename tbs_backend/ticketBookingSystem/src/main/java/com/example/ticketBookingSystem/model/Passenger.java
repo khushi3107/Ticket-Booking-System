@@ -7,18 +7,17 @@ import jakarta.persistence.*;
 public class Passenger {
 
     @Id
-    @SequenceGenerator(name="p_id", initialValue=1000, allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="p_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passenger_id", nullable = false)
     private long passengerId;
 
-    @Column(name="passenger_name", nullable = false)
+    @Column(name = "passenger_name", nullable = false)
     private String passengerName;
 
-    @Column(name="passenger_age", nullable = false)
+    @Column(name = "passenger_age", nullable = false)
     private String passengerAge;
 
-    @Column(name="passenger_gender", nullable = false)
+    @Column(name = "passenger_gender", nullable = false)
     private String passengerGender;
 
     public Passenger() {
@@ -64,4 +63,3 @@ public class Passenger {
     }
 
 }
-
